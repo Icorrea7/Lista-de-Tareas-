@@ -1,0 +1,26 @@
+<div class="row">
+  <div class="col-md-3"></div>
+  <div class="col-md-6">
+    <h1>Tareas pendientes</h1>
+    <ul class="list-group">
+      <% @tareas.each do |t| %>
+        <% if t["done"]==false %>
+          <li class="list-group-item"><%= t["title"] %>
+            <div class="text-right ">
+                <form action="/done" method="post" style="display:inline" class="form-inline">
+                  <input type="hidden" name="id" value="<%=t["id"]%>">
+                  <button type="submit" class="btn btn-success btn-xs"><span class="glyphicon glyphicon-ok" aria-hidden="true"></span></button>
+                </form>
+                <form action="/destroy" method="post" style="display:inline" class="form-inline">
+                  <input type="hidden" name="id" value="<%=t["id"]%>"  >
+                  <button type="submit" class="btn btn-danger btn-xs"><span class="glyphicon glyphicon-trash" aria-hidden="true"></span></button>
+                </form>
+            </div>
+          </li>
+
+        <%end %>
+      <%end %>
+    </ul>
+  </div>
+  <div class="col-md-3"></div>
+</div>
